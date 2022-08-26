@@ -1,7 +1,7 @@
 /* snake
 * Serpent */
 
-window.onload=function(){
+window.onload = function(){
     let canvasWidth = 900;
     let canvasHeight = 600;
     let blockSize = 30;
@@ -57,7 +57,7 @@ window.onload=function(){
         ctx.font = "bold 70px sans-serif";
         ctx.fillStyle = "#000";
         ctx.textAlign = "center";
-        ctx.text.baseline = "middle";
+        ctx.textBaseline = "middle";
         ctx.strokeStyle = "white";
         ctx.lineWidth = 5;
         let centerX = canvasWidth / 2;
@@ -71,7 +71,7 @@ window.onload=function(){
     }
 
     function restart(){
-        snake = new Snake([[5,4], [4,4], [3,4]], "right");
+        snake = new createSnake([[5,4], [4,4], [3,4]], "right");
         apple = new createApple([10,10]);
         score = 0;
         clearTimeout(timeOut);
@@ -83,16 +83,16 @@ window.onload=function(){
         ctx.font = "bold 200px sans-serif";
         ctx.fillStyle = "gray";
         ctx.textAlign = "center";
-        ctx.text.baseline = "middle";
-        let centerX = canvasWidth /2;
-        let centerY = canvasHeight /2;
+        ctx.textBaseline = "middle";
+        let centerX = canvasWidth / 2;
+        let centerY = canvasHeight / 2;
         ctx.fillText(score.toString(), centerX, centerY);
         ctx.restore();
     }
 
     function drawBlock(ctx, position){
-        let xSnake = position[0] * blockSize; // = nb de pixel
-        let ySnake = position[1] * blockSize;
+        let x = position[0] * blockSize; // = nb de pixel
+        let y = position[1] * blockSize;
         ctx.fillRect(x, y, blockSize, blockSize);
     }
 
@@ -130,18 +130,18 @@ window.onload=function(){
             if(!this.ateApple)
                 this.body.pop(); // supprime le dernier élément du tableau
             else
-                this.ateAplle = false;
+                this.ateApple = false;
         }
         this.setDirection = function (newDirection){
             let allowedDirection; // directions permises
             switch (this.direction){
                 case "left":
                 case "right":
-                    allowedDirection["up", "down"];
+                    allowedDirection = ["up", "down"];
                     break;
                 case "up":
                 case "down":
-                    allowedDirection["left", "right"];
+                    allowedDirection = ["left", "right"];
                     break;
                 default:
                     throw("invalid direction");
@@ -165,15 +165,14 @@ window.onload=function(){
             let isNotBetweenVerticalWalls = snakeHeadY < minY || snakeHeadY > maxY;
             if(isNotBetweenHorizontalWalls || isNotBetweenVerticalWalls){
                 wallCollision = true;
-            }
             for(let i = 0; i < rest.length; i++){ // Si le serpent ne se mord pas
-                if(snakeHeadY === rest[i][0] && snakeHeadY === rest[i][0]){
+                if(snakeHeadY === rest[i][0] && snakeHeadY === rest[i][0])
                     snakeCollision = true;
-                }
             }
             return wallCollision || snakeCollision;
         }
-        this.isEatingApple = function(AppleToEat){
+    }
+        this.isEatingApple = function(appleToEat){
             let head = this.body[0];
             if(head[0] === appleToEat.position[0] && head[1] === appleToEat.position[1]) // UNE LIGNE ; LES ACOLADES SONT SUPERFETATOIRES
                 return true;
@@ -189,9 +188,9 @@ window.onload=function(){
                 ctx.fillStyle = "#A71414"; // rouge
                 ctx.beginPath();
                 let radius = blockSize / 2;
-                let xApple = this.position[0] * position + radius;
-                let yApple = this.position[1] * position + radius;
-                ctx.arc(xApple, yApple, radius, 0, Math.PI * 2, true); // dessine le cercle
+                let x = this.position[0] * blockSize + radius;
+                let y = this.position[1] * blockSize + radius;
+                ctx.arc(x, y, radius, 0, Math.PI * 2  , true); // dessine le cercle
                 ctx.fill(); // le rempli
                 ctx.restore();
             }
@@ -207,7 +206,7 @@ window.onload=function(){
                         isOnSnake =  true; // vérif 1/1, c'est une boucle
                     }
                 }
-                return isOnSnake
+                return isOnSnake;
             }
         }
 
@@ -227,7 +226,7 @@ window.onload=function(){
             case 40: // bas
                 newDirection = "down";
                 break;
-            case 32: // espace
+            case 32:// espace
                 restart();
                 return;
             default:
