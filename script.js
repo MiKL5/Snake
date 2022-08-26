@@ -102,7 +102,7 @@ window.onload = function(){
         this.ateApple = false;
         this.draw = function(){
             ctx.save();
-            ctx.fillStyle = "#FF0087"; // rose
+            ctx.fillStyle = "#17FF00";
             for(let i = 0; i < this.body.length; i++){
                 drawBlock(ctx, this.body[i]);
             }
