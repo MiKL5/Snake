@@ -2,9 +2,9 @@
 * Serpent */
 
 window.onload = function(){
-    let canvasWidth = 900;
-    let canvasHeight = 600;
-    let blockSize = 30;
+    const canvasWidth = 900;
+    const canvasHeight = 600;
+    const blockSize = 30;
     let ctx;
     let delay = 100; // en ms
     let snake;
@@ -17,7 +17,7 @@ window.onload = function(){
     init();
 
     function init(){
-        let canvas = document.createElement('canvas');
+        const canvas = document.createElement('canvas');
         canvas.width = canvasWidth;
         canvas.height = canvasHeight;
         canvas.style.border = "30px solid #090068";
