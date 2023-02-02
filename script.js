@@ -6,7 +6,7 @@ window.onload = function(){
     const canvasHeight = 600;
     const blockSize = 30;
     let ctx;
-    let delay = 200; // en ms
+    let delay = 150; // en ms
     let snake;
     let apple;
     let widthInBlocks = canvasWidth/blockSize;
